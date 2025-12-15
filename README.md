@@ -196,19 +196,19 @@ The final model is an XGBoost classifier trained on the oversampled training dat
 
 
 
-| Model                | F1 (test, normal) | F1 (test, oversampled) | Notes                                                |
+| Model                  | F1 (test, normal) | F1 (test, oversampled) | Notes                                                   |
 
-|----------------------|-------------------|------------------------|------------------------------------------------------|
+|------------------------|-------------------|------------------------|---------------------------------------------------------|
 
-| Decision Tree        | ~0.74             | similar                | Simple baseline; some over/underfitting across splits.  |
+| Decision Tree          | ~0.74             | similar                | Simple baseline; some over/underfitting across splits.  |
 
-| Random Forest        | >0.74             | similar                | Better than single tree; moderate imbalance issues.  |
+| Random Forest          | >0.74             | similar                | Better than single tree; moderate imbalance issues.     |
 
-| Bagging              | ~0.75–0.78        | similar                | Slight improvement; oversampling yields small gains.  |
+| Bagging                | ~0.75–0.78        | similar                | Slight improvement; oversampling yields small gains.    |
 
-| AdaBoost             | ~0.81             | ~0.81                  | Stable across train/val/test; strong baseline.  |
+| AdaBoost               | ~0.81             | ~0.81                  | Stable across train/val/test; strong baseline.          |
 
-| XGBoost (tuned, final) | ~0.80          | ~0.80                  | Best trade‑off of F1 and recall; chosen as final.  |
+| XGBoost (tuned, final) | ~0.80             | ~0.80                  | Best trade‑off of F1 and recall; chosen as final.       |
 
 
 
