@@ -1,4 +1,4 @@
-\# EasyVisa: US Visa Approval Prediction
+# EasyVisa: US Visa Approval Prediction
 
 
 
@@ -8,7 +8,7 @@ The final model is a tuned XGBoost classifier that achieves an F1 score of aroun
 
 
 
-\## 1. Business problem
+## 1. Business problem
 
 
 
@@ -20,11 +20,11 @@ EasyVisa wants to:
 
 
 
-\- Shortlist applications with a higher chance of visa approval using a supervised classification model.   
+- Shortlist applications with a higher chance of visa approval using a supervised classification model.   
 
-\- Identify applicant and job attributes that most strongly influence whether a case is certified or denied.   
+- Identify applicant and job attributes that most strongly influence whether a case is certified or denied.   
 
-\- Recommend applicant profiles and hiring patterns that improve the likelihood of certification.   
+- Recommend applicant profiles and hiring patterns that improve the likelihood of certification.   
 
 
 
@@ -32,7 +32,7 @@ Success is measured using F1 score on a held‑out test set, with particular att
 
 
 
-\## 2. Dataset
+## 2. Dataset
 
 
 
@@ -42,11 +42,11 @@ Key fields include:
 
 
 
-\- Applicant and employer: `continent`, `educationofemployee`, `hasjobexperience`, `requiresjobtraining`, `noofemployees`, `yrofestab`.  
+- Applicant and employer: `continent`, `educationofemployee`, `hasjobexperience`, `requiresjobtraining`, `noofemployees`, `yrofestab`.  
 
-\- Job and wage: `regionofemployment`, `prevailingwage`, `unitofwage`, `fulltimeposition`.  
+- Job and wage: `regionofemployment`, `prevailingwage`, `unitofwage`, `fulltimeposition`.  
 
-\- Target: `casestatus` (Certified / Denied).  
+- Target: `casestatus` (Certified / Denied).  
 
 
 
@@ -56,7 +56,7 @@ The raw CSV is provided as part of the Great Learning “Machine Learning 2” c
 
 
 
-\## 3. Approach
+## 3. Approach
 
 
 
@@ -64,13 +64,13 @@ The project follows an end‑to‑end classification workflow.
 
 
 
-1\. \*\*Problem framing\*\*  
+1. **Problem framing**  
 
 &nbsp;  - Define the business objective (prioritize likely approvals) and select F1 as the main metric, with recall on “Certified” as a secondary focus.   
 
 
 
-2\. \*\*Feature engineering \& data cleaning\*\*  
+2. **Feature engineering & data cleaning**  
 
 &nbsp;  - Convert negative `noofemployees` values to their absolute values, since employee counts cannot be negative; summary statistics (mean, std) remain stable.   
 
@@ -80,7 +80,7 @@ The project follows an end‑to‑end classification workflow.
 
 
 
-3\. \*\*Exploratory Data Analysis (EDA)\*\*  
+3. **Exploratory Data Analysis (EDA)**  
 
 &nbsp;  - Study distributions of `noofemployees`, `yrofestab`, and `prevailingwage` (heavily skewed with many valid outliers).   
 
@@ -90,7 +90,7 @@ The project follows an end‑to‑end classification workflow.
 
 
 
-4\. \*\*Baseline and ensemble models\*\*  
+4. **Baseline and ensemble models**  
 
 &nbsp;  - Train and compare five tree‑based models on the original split:  
 
@@ -108,7 +108,7 @@ The project follows an end‑to‑end classification workflow.
 
 
 
-5\. \*\*Class imbalance handling\*\*  
+5. **Class imbalance handling**  
 
 &nbsp;  - Since about 67% of cases are certified and 33% denied, experiment with:   
 
@@ -120,7 +120,7 @@ The project follows an end‑to‑end classification workflow.
 
 
 
-6\. \*\*Hyperparameter tuning and model selection\*\*  
+6. **Hyperparameter tuning and model selection**  
 
 &nbsp;  - Use GridSearchCV and RandomizedSearchCV to tune Bagging, AdaBoost, and XGBoost.   
 
@@ -128,7 +128,7 @@ The project follows an end‑to‑end classification workflow.
 
 
 
-\## 4. Key insights
+## 4. Key insights
 
 
 
@@ -136,7 +136,7 @@ From the EDA and model feature importances:
 
 
 
-\- \*\*Education level is critical\*\*  
+- **Education level is critical**  
 
 &nbsp; - Applicants with at least a high‑school or master’s degree have markedly higher approval rates; high school and master’s categories contribute most to model importance.   
 
@@ -144,7 +144,7 @@ From the EDA and model feature importances:
 
 
 
-\- \*\*Full‑time jobs and no training requirement help\*\*  
+- **Full‑time jobs and no training requirement help**  
 
 &nbsp; - Full‑time positions show higher approval rates compared to part‑time roles.   
 
@@ -152,7 +152,7 @@ From the EDA and model feature importances:
 
 
 
-\- \*\*Geography and wages matter, but less than education\*\*  
+- **Geography and wages matter, but less than education**  
 
 &nbsp; - Applications from Asia and Europe make up most of the volume and show relatively higher approval counts compared to some other continents, though wage distributions are broadly similar across regions.   
 
@@ -164,11 +164,11 @@ These insights translate into actionable guidance for EasyVisa on how to counsel
 
 
 
-\## 5. Final model
+## 5. Final model
 
 
 
-\### Tuned XGBoost Classifier (final model)
+### Tuned XGBoost Classifier (final model)
 
 
 
@@ -176,7 +176,7 @@ The final model is an XGBoost classifier trained on the oversampled training dat
 
 
 
-\- Test performance (approximate):  
+- Test performance (approximate):  
 
 &nbsp; - Accuracy ≈ 0.72  
 
@@ -186,13 +186,13 @@ The final model is an XGBoost classifier trained on the oversampled training dat
 
 &nbsp; - F1 ≈ 0.80   
 
-\- The model maintains reasonably similar performance on train, validation, and test sets, indicating no severe overfitting after tuning.   
+- The model maintains reasonably similar performance on train, validation, and test sets, indicating no severe overfitting after tuning.   
 
-\- Confusion matrices show that the model identifies roughly 57–58% of true positives and around 15% of true negatives, which is acceptable given the class imbalance and business focus on not missing strong candidates. 
+- Confusion matrices show that the model identifies roughly 57–58% of true positives and around 15% of true negatives, which is acceptable given the class imbalance and business focus on not missing strong candidates. 
 
 
 
-\### Model comparison snapshot
+### Model comparison snapshot
 
 
 
@@ -216,7 +216,7 @@ The tuned XGBoost model is selected as the final model because it offers one of 
 
 
 
-\## 6. Repository structure
+## 6. Repository structure
 
 
 
@@ -244,15 +244,15 @@ easyvisa-visa-approval/
 
 
 
-\## 7. How to run
+## 7. How to run
 
 
 
-\### Option 1: Run locally (Jupyter)
+### Option 1: Run locally (Jupyter)
 
 
 
-1\. Install dependencies:
+1. Install dependencies:
 
 
 ```bash
@@ -262,28 +262,28 @@ pip install -r requirements.txt
 ```
 
 
-2\. Place the `EasyVisa.csv` dataset into the `data/` folder. 
+2. Place the `EasyVisa.csv` dataset into the `data/` folder. 
 
 
-3\. Open and run the notebook:
+3. Open and run the notebook:
 ```bash
 
 jupyter notebook notebooks/EasyVisa_Visa_Approval.ipynb
 ```
 
-\### Option 2: Run in Google Colab
+### Option 2: Run in Google Colab
 
 
 
-1\. Upload the notebook file (`EasyVisa_Visa_Approval.ipynb`) to Google Colab.   
+1. Upload the notebook file (`EasyVisa_Visa_Approval.ipynb`) to Google Colab.   
 
 
 
-2\. Upload `EasyVisa.csv` to Colab (or mount Google Drive) and adjust the data path in the first data‑loading cell if needed.  
+2. Upload `EasyVisa.csv` to Colab (or mount Google Drive) and adjust the data path in the first data‑loading cell if needed.  
 
 &nbsp;
 
-3\. Run all cells from top to bottom to reproduce the analysis and model training. 
+3. Run all cells from top to bottom to reproduce the analysis and model training. 
 
 
 
